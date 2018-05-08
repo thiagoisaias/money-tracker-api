@@ -1,5 +1,5 @@
 class Api::V1::AccountsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_api_v1_user!
   before_action :set_account, only: %i[show update destroy current_balance]
   before_action :set_user, only: %i[index create]
 
@@ -37,6 +37,7 @@ class Api::V1::AccountsController < ApplicationController
       render json: { current_balance: result }, status: :ok
     else 
       render json: { error: "Something went wrong" }, status: :unprocessable_entity
+    end
   end
 
   private
