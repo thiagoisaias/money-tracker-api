@@ -1,6 +1,3 @@
-# t.string "name"
-# t.string "color"
-
 class Category < ApplicationRecord
   has_many :transactions
 
