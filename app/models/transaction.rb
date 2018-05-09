@@ -9,5 +9,4 @@ class Transaction < ApplicationRecord
   validates :date, presence: true
   validates :value, presence: true
   validates :transaction_type, presence: true
-  validates :status, presence: true
 end

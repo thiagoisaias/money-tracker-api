@@ -24,6 +24,7 @@ Account.create(name: 'Account 5', initial_balance: 999346.65, user_id: User.firs
     description: Faker::SiliconValley.invention,
     date: Faker::Date.backward(14),
     value: Faker::Number.decimal(4),
+    status: 1,
     transaction_type: 1,
     account_id: 1,
     category_id: Category.first.id
