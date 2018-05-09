@@ -13,11 +13,11 @@ Category.create(name: 'Transport', color: '#FF33AA')
 
 User.create(name: 'Thiago', email: 'thiago@email.com', password: 'q1w2e3r4')
 
-Account.create(name: 'Account 1', initial_balance: 827346.65, user_id: 1)
-Account.create(name: 'Account 2', initial_balance: 347346.65, user_id: 1)
-Account.create(name: 'Account 3', initial_balance: 7346.65, user_id: 1)
-Account.create(name: 'Account 4', initial_balance: 46.65, user_id: 1)
-Account.create(name: 'Account 5', initial_balance: 999346.65, user_id: 1)
+Account.create(name: 'Account 1', initial_balance: 827346.65, user_id: User.first.id)
+Account.create(name: 'Account 2', initial_balance: 347346.65, user_id: User.first.id)
+Account.create(name: 'Account 3', initial_balance: 7346.65, user_id: User.first.id)
+Account.create(name: 'Account 4', initial_balance: 46.65, user_id: User.first.id)
+Account.create(name: 'Account 5', initial_balance: 999346.65, user_id: User.first.id)
 
 30.times do
   Transaction.create(
@@ -26,6 +26,6 @@ Account.create(name: 'Account 5', initial_balance: 999346.65, user_id: 1)
     value: Faker::Number.decimal(4),
     transaction_type: 1,
     account_id: 1,
-    category_id: Faker::Number.between(1, 4)
+    category_id: Category.first.id
   )
 end
