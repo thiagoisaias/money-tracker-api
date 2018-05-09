@@ -4,7 +4,7 @@ class Api::V1::AccountsController < ApplicationController
   before_action :set_user, only: %i[index create]
 
   def index
-    @accounts = @user.accounts
+    @accounts = @user.accounts.page params[:page]
     render json: @accounts, status: :ok
   end
 

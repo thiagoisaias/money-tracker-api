@@ -4,7 +4,7 @@ class Api::V1::TransactionsController < ApplicationController
   before_action :set_account, only: %i[index create]
 
   def index
-    @transactions = @account.transactions
+    @transactions = @account.transactions.page params[:page]
     render json: @transactions, status: :ok
   end
 

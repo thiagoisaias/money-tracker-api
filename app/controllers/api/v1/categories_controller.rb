@@ -2,7 +2,7 @@ class Api::V1::CategoriesController < ApplicationController
   # before_action :authenticate_api_v1_user!
 
   def index
-    @categories = Category.all
+    @categories = Category.all.page params[:page]
     render json: @categories, status: :ok
   end
 
