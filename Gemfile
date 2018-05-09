@@ -5,8 +5,10 @@ gem 'rails', '~> 5.2.0'
 
 gem 'active_model_serializers'
 gem 'devise_token_auth'
+gem 'faker'
 gem 'fast_jsonapi'
 gem 'figaro'
+gem 'kaminari'
 gem 'pg'
 gem 'puma', '~> 3.11'
 
