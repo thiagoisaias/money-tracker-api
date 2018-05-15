@@ -29,6 +29,11 @@ class Api::V1::AccountsController < ApplicationController
     end
   end
 
+  def destroy
+    @account.destroy
+    render json: {}, status: :no_content
+  end
+
   def current_balance
     income = @account.transactions.where(transaction_type: 1).sum(:value)
     outcome = @account.transactions.where(transaction_type: 2).sum(:value)

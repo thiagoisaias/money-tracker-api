@@ -10,4 +10,10 @@ class Api::V1::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     render json: @category, status: :ok
   end
+
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+    render json: {}, status: :no_content
+  end
 end
