@@ -1,5 +1,5 @@
 class Api::V1::TransactionsController < ApplicationController
-  # before_action :authenticate_api_v1_user!
+  before_action :authenticate_api_v1_user!
   before_action :set_transaction, only: %i[show update destroy]
   before_action :set_account, only: %i[index create]
 
