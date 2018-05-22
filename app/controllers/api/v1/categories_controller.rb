@@ -1,5 +1,6 @@
 class Api::V1::CategoriesController < ApplicationController
   # before_action :authenticate_api_v1_user!
+  before_action :set_category, only: %i[show update destroy]
 
   def index
     @categories = Category.all.page params[:page]
@@ -7,19 +8,38 @@ class Api::V1::CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
     render json: @category, status: :ok
   end
 
+  def create
+    @category = Category.new(category_params)
+    if @category.save
+      render json: @category, status: :ok
+    else
+      render json: { errors: @category.errors }, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @category.update(category_params)
+      render json: @category, status: :ok
+    else
+      render json: { errors: @category.errors }, status: :unprocessable_entity
+    end
+  end
+
   def destroy
-    @category = Category.find(params[:id])
     @category.destroy
     render json: {}, status: :no_content
   end
 
   private
+  
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
   def category_params
-    params.require(:category).permit(:name, :initial_balance)
+    params.require(:category).permit(:name, :color)
   end
 end
