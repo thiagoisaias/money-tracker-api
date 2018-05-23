@@ -1,5 +1,5 @@
 class Transaction < ApplicationRecord
-  enum transaction_type: %i[earning expense]
+  enum transaction_type: %i[earning expense transference]
   enum status: %i[paid unpaid]
   
   belongs_to :account
