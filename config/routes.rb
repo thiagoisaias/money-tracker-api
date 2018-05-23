@@ -9,10 +9,9 @@ Rails.application.routes.draw do
           get 'current_balance', to: 'accounts#current_balance', on: :member
           resources :transactions, except: %i[edit new], on: :member
         end
+        resources :categories, except: %i[edit new]
       end
     
-      resources :categories, except: %i[edit new]
-      
     end
   end
 end
