@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
-  has_many :accounts
-  has_many :categories
+  has_many :accounts, dependent: :destroy
+  has_many :categories, dependent: :destroy
 
   validates :name, presence: :true
 
