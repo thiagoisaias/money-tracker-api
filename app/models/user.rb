@@ -18,5 +18,22 @@ class User < ApplicationRecord
   end
 
   def generate_default_categories
+    category_list = [
+      { name: "Bills & Utilities" , color: "red" },
+      { name: "Education" , color: "pink" },
+      { name: "Food" , color: "gray" },
+      { name: "Healthcare" , color: "black" },
+      { name: "Hobbies" , color: "yellow" },
+      { name: "Home" , color: "lightgreen" },
+      { name: "Kids" , color: "salmon" },
+      { name: "Misc" , color: "blue" },
+      { name: "Personal Care" , color: "lightblue" },
+      { name: "Transport" , color: "purple" },
+      { name: "Travel" , color: "orange" }
+    ]
+
+    category_list.each do |category|
+      self.categories.create(name: category[:name], color: category[:color])
+    end
   end
 end
