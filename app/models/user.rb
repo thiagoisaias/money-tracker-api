@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :accounts
   has_many :categories
 
+  validates :name, presence: :true
+
   after_create :generate_default_categories
   after_create :generate_default_account
 
