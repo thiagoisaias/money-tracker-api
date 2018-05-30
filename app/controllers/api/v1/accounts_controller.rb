@@ -1,5 +1,5 @@
 class Api::V1::AccountsController < ApplicationController
-  # before_action :authenticate_api_v1_user!
+  before_action :authenticate_api_v1_user!
   before_action :set_account, only: %i[show update destroy current_balance]
   before_action :set_user, only: %i[index create]
 

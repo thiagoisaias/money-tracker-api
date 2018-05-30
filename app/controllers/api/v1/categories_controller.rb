@@ -1,5 +1,5 @@
 class Api::V1::CategoriesController < ApplicationController
-  # before_action :authenticate_api_v1_user!
+  before_action :authenticate_api_v1_user!
   before_action :set_category, only: %i[show update destroy]
   before_action :set_user, only: %i[index create]
 
