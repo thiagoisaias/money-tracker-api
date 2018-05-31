@@ -34,17 +34,6 @@ class Api::V1::AccountsController < ApplicationController
     render json: {}, status: :no_content
   end
 
-  def current_balance
-    income = @account.transactions.where(transaction_type: 1).sum(:value)
-    outcome = @account.transactions.where(transaction_type: 2).sum(:value)
-    result = (@account.initial_balance + income - outcome)
-    if result
-      render json: { current_balance: result }, status: :ok
-    else 
-      render json: { error: "Something went wrong" }, status: :unprocessable_entity
-    end
-  end
-
   private
 
   def set_account
