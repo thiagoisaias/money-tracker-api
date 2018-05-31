@@ -1,7 +1,7 @@
 class Api::V1::TransactionsController < ApplicationController
   before_action :authenticate_api_v1_user!
   before_action :set_transaction, only: %i[show update destroy]
-  before_action :set_account, only: %i[index create]
+  before_action :set_account, only: %i[index create fetch_by_date]
 
   def index
     @transactions = @account.transactions.page params[:page]
@@ -32,6 +32,11 @@ class Api::V1::TransactionsController < ApplicationController
   def destroy
     @transaction.destroy
     render json: {}, status: :no_content
+  end
+
+  def fetch_by_date
+    @transactions = @account.transactions.where("extract(year from date) = ? AND extract(month from date) = ?", params[:year], params[:month]).order(:date, :id).page params[:page]
+    render json: @transactions, status: :ok
   end
 
   private

@@ -1,4 +1,3 @@
 class AccountSerializer < ActiveModel::Serializer
-  attributes :id, :name
-  attribute :initial_balance, key: :initialBalance
+  attributes :id, :name, :initial_balance, :current_balance
 end
