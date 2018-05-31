@@ -6,10 +6,9 @@ Rails.application.routes.draw do
       
       resources :users, only: %i[show] do
         get 'overall_balance', to: 'users#overall_balance', on: :member
+        get 'fetch_transactions_by_date', to: 'users#fetch_transactions_by_date', on: :member
         resources :accounts, except: %i[edit new] do
-          resources :transactions, except: %i[edit new] do
-            get 'fetch_by_date', to: 'transactions#fetch_by_date', on: :collection
-          end
+          resources :transactions, except: %i[edit new]
         end
         resources :categories, except: %i[edit new]
       end
