@@ -11,6 +11,12 @@ class User < ApplicationRecord
   after_create :generate_default_categories
   after_create :generate_default_account
 
+
+  def overall_balance
+    account_balances = accounts.map{ |account| account.current_balance }
+    account_balances.sum
+  end
+
   private
 
   def generate_default_account
