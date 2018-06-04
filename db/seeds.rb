@@ -6,18 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Category.create(name: 'Health', color: '#01AABB')
-Category.create(name: 'Food', color: '#88FF99')
-Category.create(name: 'Home', color: '#CCFF99')
-Category.create(name: 'Transport', color: '#FF33AA')
+user = User.create(name: 'Thiago', email: 'thiago@email.com', password: 'q1w2e3r4')
 
-User.create(name: 'Thiago', email: 'thiago@email.com', password: 'q1w2e3r4')
+category = user.categories.create(name: 'Health', color: '#01AABB')
+user.categories.create(name: 'Food', color: '#88FF99')
+user.categories.create(name: 'Home', color: '#CCFF99')
+user.categories.create(name: 'Transport', color: '#FF33AA')
 
-Account.create(name: 'Account 1', initial_balance: 827346.65, user_id: User.first.id)
-Account.create(name: 'Account 2', initial_balance: 347346.65, user_id: User.first.id)
-Account.create(name: 'Account 3', initial_balance: 7346.65, user_id: User.first.id)
-Account.create(name: 'Account 4', initial_balance: 46.65, user_id: User.first.id)
-Account.create(name: 'Account 5', initial_balance: 999346.65, user_id: User.first.id)
+account = user.accounts.create(name: 'Account 1', initial_balance: 827346.65, user_id: User.first.id)
+user.accounts.create(name: 'Account 2', initial_balance: 347346.65, user_id: User.first.id)
+user.accounts.create(name: 'Account 3', initial_balance: 7346.65, user_id: User.first.id)
+user.accounts.create(name: 'Account 4', initial_balance: 46.65, user_id: User.first.id)
+user.accounts.create(name: 'Account 5', initial_balance: 999346.65, user_id: User.first.id)
 
 30.times do
   Transaction.create(
@@ -26,7 +26,7 @@ Account.create(name: 'Account 5', initial_balance: 999346.65, user_id: User.firs
     value: Faker::Number.decimal(4),
     status: 1,
     transaction_type: 1,
-    account_id: 1,
-    category_id: Category.first.id
+    account_id: account.id,
+    category_id: category.id
   )
 end
